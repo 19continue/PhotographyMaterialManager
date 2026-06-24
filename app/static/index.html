@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>摄影素材管理助手</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="rail">
+        <section class="panel ingest-panel">
+          <div class="section-head">
+            <h2>入库</h2>
+            <span id="ingestStatus" class="muted">等待环境准备完成</span>
+          </div>
+          <form id="ingestForm" class="stack">
+            <div class="picker-actions">
+              <button id="pickDirectoryBtn" class="secondary-btn" type="button">打开文件夹</button>
+              <button id="pickFilesBtn" class="secondary-btn" type="button">打开文件</button>
+            </div>
+            <label>
+              <span>已选择</span>
+              <input id="directoryInput" name="directory" placeholder="选择文件夹、文件，或粘贴本机路径" />
+            </label>
+            <div id="selectedFiles" class="selected-files hidden"></div>
+            <label>
+              <span>首轮数量限制</span>
+              <input id="limitInput" name="limit" type="number" min="1" placeholder="留空为全部" />
+            </label>
+            <button class="primary-btn" type="submit" data-runtime-required>扫描并转写</button>
+            <button id="refreshBtn" class="secondary-btn" type="button">刷新列表</button>
+            <button id="processBtn" class="secondary-btn" type="button" data-runtime-required>继续处理队列</button>
+            <button id="retryBtn" class="secondary-btn" type="button" data-runtime-required>重试失败</button>
+            <button id="semanticBtn" class="secondary-btn" type="button" data-runtime-required>补齐本地语义索引</button>
+          </form>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <form id="searchForm" class="search">
+            <input id="searchInput" placeholder="描述你想找的素材，例如：他说话时很开心，现场有人笑" autocomplete="off" />
+            <button class="primary-btn" type="submit" data-runtime-required>搜索</button>
+            <button id="assistantBtn" class="secondary-btn" type="button" data-runtime-required>智能搜索</button>
+            <a id="exportLink" class="secondary-link" href="/api/export.csv?q=" data-runtime-required>导出 CSV</a>
+          </form>
+        </header>
+
+        <section class="content-grid">
+          <section class="results-pane">
+            <div class="section-head">
+              <h2>结果</h2>
+              <span id="resultCount" class="muted">0 条</span>
+            </div>
+            <div id="searchStatus" class="work-status hidden"></div>
+            <div id="assistantAnswer" class="assistant-answer hidden"></div>
+            <div id="resultList" class="result-list empty">
+              <p>首次环境准备完成后，可以输入一句描述或对白来搜索素材。</p>
+            </div>
+          </section>
+
+          <section class="preview-pane">
+            <div class="section-head">
+              <h2>预览</h2>
+              <span id="selectedTime" class="muted">未选择</span>
+            </div>
+            <div class="video-wrap">
+              <video id="videoPreview" controls preload="metadata"></video>
+              <div id="videoPlaceholder" class="video-placeholder">选择一条结果后预览素材</div>
+            </div>
+            <div id="selectedMeta" class="selected-meta"></div>
+          </section>
+        </section>
+
+        <section class="media-pane">
+          <div class="section-head">
+            <h2>最近素材</h2>
+            <span id="mediaCount" class="muted">0 个文件</span>
+          </div>
+          <div id="mediaList" class="media-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <section id="taskWindow" class="task-window" aria-label="入库任务">
+      <div class="task-header">
+        <div>
+          <strong>入库任务</strong>
+          <span id="taskSummary">队列空闲</span>
+        </div>
+        <button id="taskToggleBtn" class="ghost-btn" type="button">缩小</button>
+      </div>
+      <div class="task-body">
+        <dl id="progressStats" class="stats"></dl>
+        <div id="currentProgress" class="current-progress"></div>
+      </div>
+    </section>
+
+    <section id="startupPanel" class="task-window dependency-window" aria-label="首次环境准备">
+      <div class="task-header">
+        <div>
+          <strong>首次环境准备</strong>
+          <span id="dependencySummary">等待检查</span>
+        </div>
+        <div class="startup-actions">
+          <span id="dependencyStatusText" class="status-pill warn">检查中</span>
+          <button id="startupToggleBtn" class="ghost-btn" type="button">缩小</button>
+        </div>
+      </div>
+      <div id="startupBody" class="task-body startup-body">
+        <p id="dependencyDetail" class="startup-detail">正在读取依赖和模型状态。</p>
+        <div id="dependencyProgress" class="dependency-progress"></div>
+        <div id="dependencyLog" class="startup-log-note"></div>
+        <div id="dependencyPath" class="startup-path"></div>
+      </div>
+    </section>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

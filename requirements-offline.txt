@@ -1,0 +1,8 @@
+-r requirements.txt
+wheel
+openai-whisper
+sentence-transformers
+opencc-python-reimplemented
+funasr
+modelscope
+torchaudio

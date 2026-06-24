@@ -1,0 +1,1 @@
+"""Photography Material Manager MVP."""

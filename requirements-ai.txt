@@ -1,0 +1,6 @@
+funasr==1.3.9
+modelscope==1.37.1
+opencc-python-reimplemented==0.1.7
+sentence-transformers==5.1.2
+torch==2.8.0
+torchaudio==2.8.0
