@@ -2,7 +2,7 @@
 
 ## 演示视频
 
-[查看 6月9日演示视频（B站）](https://www.bilibili.com/video/BV1Ba7h6YEBF/?spm_id_from=333.1387.upload.video_card.click&vd_source=2b3985032956a64846bedbbbf85a5e6c)
+[查看演示视频（B站）](https://www.bilibili.com/video/BV1Ba7h6YEBF/?spm_id_from=333.1387.upload.video_card.click&vd_source=2b3985032956a64846bedbbbf85a5e6c)
 
 本项目是视频素材对白检索助手的低成本 MVP。素材保留在本机或移动硬盘，系统只保存文件路径、压缩音频分块和转写索引。第一版支持按对白搜索，返回素材文件、时间范围，并在网页里跳秒预览。
 
