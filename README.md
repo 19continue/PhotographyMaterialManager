@@ -1,5 +1,9 @@
 # Photography Material Manager
 
+## 演示视频
+
+[查看 6月9日演示视频](https://github.com/19continue/PhotographyMaterialManager/releases/download/demo-2026-06-09/demo-2026-06-09.mp4)
+
 本项目是视频素材对白检索助手的低成本 MVP。素材保留在本机或移动硬盘，系统只保存文件路径、压缩音频分块和转写索引。第一版支持按对白搜索，返回素材文件、时间范围，并在网页里跳秒预览。
 
 ## 功能
